@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Recognition Data Entry</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+</head>
+<body>
+    <div class="sidenav">
+        <div class="login-main-text">
+           <h1>Face Recognition Application<h1>
+            <h2>DataSet Training</h2> 
+            <img src="static\2012.i511.005_personal_information_protection_biometric.jpg" width="80%"> <br>
+           <p>Purpose of this application is to create a automatic lock on face recognize by training dataset</p>
+        </div>
+     </div>
+     <div class="main">
+        <div class="col-md-6 col-sm-12">
+           <div class="login-form">
+            
+              <form action="/home" method="post" enctype="multipart/form-data">
+                 
+                <div class="form-group">
+                    <label>User Name</label>
+                    <input type="text" class="form-control" name="username" placeholder="User Name">
+                 </div>
+                    <label>Upload Image</label>
+                    <div class="alert alert-dark" role="alert">
+                         Upload a clear image in which your facial features are  easily detectable
+                      </div>
+                       <label>For example</label>
+                       <div class="form-group">
+                       <img  src="static\face id.jpg" width="50%">
+                     </div>
+                     
+                    {{ form.hidden_tag() }}
+                    {% for error in form.photo.errors %}
+                    <span style="color:red;">{{ error }}</span>
+                    {% endfor %}
+                 <div class="row justify-content-center">
+                     <div class="col-auto">
+                         {{ form.photo(class="form-control") }}
+                     </div>
+                     <div class="col-auto"><br>
+                         {{ form.submit(class="btn btn-black") }}
+                     </div>
+                     
+                 </div>
+                    <br>
+                    <button type="submit" class="btn btn-black"><a href="{{ url_for('train') }}">Proceed Next</a></button>
+                    <button type="submit" class="btn btn-black"><a href="{{ url_for('login') }}">Proceed Back</a></button>
+                    </form>
+
+
+                    
+                    
+                 <p>
+                    {% with messages = get_flashed_messages() %}
+                      {% if messages %}
+                        <ul>
+                        {% for message in messages %}
+                          <li>{{ message }}</li>
+                        {% endfor %}
+                        </ul>
+                      {% endif %}
+                    {% endwith %}
+                </p>
+                
+           </div>
+        </div>
+     </div>
+
+     <style>
+        body {
+    font-family: "Lato", sans-serif;
+}
+
+
+
+.main-head{
+    height: 150px;
+    background: #FFF;
+   
+}
+
+.sidenav {
+    height: 100%;
+    background-color: #000;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+
+.main {
+    padding: 0px 10px;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+}
+
+@media screen and (max-width: 450px) {
+    .login-form{
+        margin-top: 10%;
+    }
+
+    .register-form{
+        margin-top: 10%;
+    }
+}
+
+@media screen and (min-width: 768px){
+    .main{
+        margin-left: 40%; 
+    }
+
+    .sidenav{
+        width: 40%;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+    }
+
+    .login-form{
+        margin-top: 80%;
+    }
+
+    .register-form{
+        margin-top: 20%;
+    }
+}
+
+
+.login-main-text{
+    margin-top: 20%;
+    padding: 60px;
+    color: #fff;
+}
+
+.login-main-text h2{
+    font-weight: 300;
+}
+
+.btn-black{
+    background-color: #000 !important;
+    color: #fff;
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+#img-upload{
+    width: 50%;
+}
+
+     </style>
+</body>
+</html>
+
+
